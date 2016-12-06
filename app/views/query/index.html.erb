@@ -1,4 +1,24 @@
-<h2>Weather</h2>
-<% @queries.each do |query| %>
-  <h3>Current Temp: <% query["query"] %></h3>
+<h1>Weather Forecast</h1>
+
+<%= form_tag "/", method: :get do %>
+  <%= label_tag :city %>
+  <%= text_field_tag :city %>
+  <%= label_tag :state %>
+  <%= text_field_tag :state %>
+  <%= submit_tag "Submit" %>
+<% end %>
+
+<h3>Current weather for <%= @city %> <%= @region %>, <%= @country %></h3>
+
+<p>Current temperature: <%= @temperature %> degrees</p>
+
+<p>Forecast data:</p>
+<% @forecasts[0..4].each do |forecast| %>
+  <div>
+    <%= forecast["date"] %>
+    <%= forecast["day"] %>
+    <%= forecast["high"] %>
+    <%= forecast["low"] %>
+    <%= forecast["text"] %>
+  </div>
 <% end %>
